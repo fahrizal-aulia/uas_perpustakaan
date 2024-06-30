@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../models/sewa.dart';
 
 class ApiSewa {
-  static const String apiUrl = 'http://192.168.1.6:8000/api/sewa';
+  static const String apiUrl = 'https://utsuwp.000webhostapp.com/api/sewa';
 
   static Future<List<Sewa>> fetchRentals() async {
     final response = await http.get(Uri.parse(apiUrl));

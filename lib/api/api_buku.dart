@@ -4,7 +4,7 @@ import '../models/buku.dart';
 
 class ApiBuku {
   static const baseUrl =
-      'http://192.168.1.6:8000/api/'; // Sesuaikan dengan URL API Anda
+      'https://utsuwp.000webhostapp.com/api/'; // Sesuaikan dengan URL API Anda
 
   static Future<List<Buku>> fetchBooks() async {
     final response = await http.get(Uri.parse(baseUrl +
