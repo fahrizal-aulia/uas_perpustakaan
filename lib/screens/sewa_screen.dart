@@ -20,7 +20,7 @@ class _SewaScreenState extends State<SewaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Sewas')),
+      appBar: AppBar(title: Text('Sewa')),
       body: Center(
         child: FutureBuilder<List<Sewa>>(
           future: futureSewas,

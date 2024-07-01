@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../provider/provider.dart';
-// import 'login_screen.dart';
+import '../provider/auth_provider.dart'; // Sesuaikan dengan path provider Anda
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -17,6 +16,7 @@ class ProfileScreen extends StatelessWidget {
               icon: Icon(Icons.logout),
               onPressed: () {
                 authProvider.logout();
+                Navigator.pushReplacementNamed(context, '/login');
               },
             ),
         ],

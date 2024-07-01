@@ -5,7 +5,7 @@ import 'screens/login_screen.dart';
 import 'screens/buku_screen.dart';
 import 'screens/sewa_screen.dart';
 import 'screens/profile_screen.dart';
-import 'provider/provider.dart';
+import 'provider/auth_provider.dart'; // Sesuaikan dengan path provider Anda
 
 void main() {
   runApp(MyApp());
@@ -13,10 +13,9 @@ void main() {
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => AuthProvider()
-        ..loadEmail(), // Menggunakan ChangeNotifierProvider untuk AuthProvider
+      create: (_) => AuthProvider()..loadEmail(), // Inisialisasi AuthProvider
       child: MaterialApp(
         title: 'Uas perpustakaan',
         theme: ThemeData(
@@ -25,12 +24,12 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          '/': (context) => SplashScreen(), // Rute awal splash screen
-          '/login': (context) => LoginForm(), // Rute untuk halaman login
-          '/buku': (context) => BukuScreen(), // Rute untuk halaman buku
-          '/sewa': (context) => SewaScreen(), // Rute untuk halaman sewa
-          '/profile': (context) =>
-              ProfileScreen(), // Rute untuk halaman profile
+          '/': (context) => SplashScreen(), // Splash screen sebagai halaman awal
+          '/login': (context) => LoginPage(), // Halaman login
+          '/main': (context) => MainScreen(), // Halaman utama setelah login
+          '/buku': (context) => BukuScreen(), // Halaman buku
+          '/sewa': (context) => SewaScreen(), // Halaman sewa
+          '/profile': (context) => ProfileScreen(), // Halaman profile
         },
       ),
     );
