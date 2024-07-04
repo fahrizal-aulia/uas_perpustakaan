@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../provider/auth_provider.dart'; // Sesuaikan dengan path provider Anda
+import '../provider/auth_provider.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override

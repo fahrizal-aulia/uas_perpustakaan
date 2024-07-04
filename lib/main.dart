@@ -13,7 +13,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   @override
-   Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => AuthProvider()..loadEmail(), // Inisialisasi AuthProvider
       child: MaterialApp(
@@ -24,8 +24,9 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          '/': (context) => SplashScreen(), // Splash screen sebagai halaman awal
-          '/login': (context) => LoginPage(), // Halaman login
+          '/': (context) =>
+              SplashScreen(), // Splash screen sebagai halaman awal
+          '/login': (context) => LoginForm(), // Halaman login
           '/main': (context) => MainScreen(), // Halaman utama setelah login
           '/buku': (context) => BukuScreen(), // Halaman buku
           '/sewa': (context) => SewaScreen(), // Halaman sewa
