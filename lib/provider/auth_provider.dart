@@ -91,4 +91,9 @@ class AuthProvider with ChangeNotifier {
     _email = prefs.getString('email') ?? '';
     notifyListeners();
   }
+
+  Future<int?> getUserId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getInt('user_id');
+  }
 }

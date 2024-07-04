@@ -5,8 +5,8 @@ import '../models/sewa.dart';
 class ApiSewa {
   static const String apiUrl = 'https://utsuwp.000webhostapp.com/api/sewa';
 
-  static Future<List<Sewa>> fetchRentals() async {
-    final response = await http.get(Uri.parse(apiUrl));
+  static Future<List<Sewa>> fetchRentalsByUserId(int userId) async {
+    final response = await http.get(Uri.parse('$apiUrl/user/$userId'));
 
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body);
