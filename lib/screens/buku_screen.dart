@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/buku.dart';
 import '../api/api_buku.dart';
 import '../screens/cart_screen.dart';
+import '../provider/cart_provider.dart';
 
 class BukuScreen extends StatefulWidget {
   @override
@@ -9,8 +11,6 @@ class BukuScreen extends StatefulWidget {
 }
 
 class _BukuScreenState extends State<BukuScreen> {
-  List<Buku> _cart = []; // State untuk menyimpan buku yang akan disewa
-
   late Future<List<Buku>> futureBuku;
 
   @override
@@ -19,14 +19,10 @@ class _BukuScreenState extends State<BukuScreen> {
     futureBuku = ApiBuku.fetchBooks();
   }
 
-  void addToCart(Buku buku) {
-    setState(() {
-      _cart.add(buku);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context);
+
     return Scaffold(
       appBar: AppBar(title: Text('Daftar Buku')),
       body: Center(
@@ -37,12 +33,12 @@ class _BukuScreenState extends State<BukuScreen> {
               return ListView.builder(
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
+                  final buku = snapshot.data![index];
                   return ListTile(
-                    title: Text(snapshot.data![index].judul.toString()),
-                    subtitle: Text(
-                        'harga: ${snapshot.data![index].harga_buku.toString()}'),
+                    title: Text(buku.judul ?? 'Judul tidak tersedia'),
+                    subtitle: Text('Harga: ${buku.harga_buku}'),
                     onTap: () {
-                      addToCart(snapshot.data![index]);
+                      cartProvider.addToCart(buku);
                     },
                   );
                 },
@@ -60,7 +56,7 @@ class _BukuScreenState extends State<BukuScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => CartScreen(cart: _cart),
+              builder: (context) => CartScreen(),
             ),
           );
         },

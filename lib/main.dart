@@ -7,6 +7,7 @@ import 'screens/sewa_screen.dart';
 import 'screens/profile_screen.dart';
 import 'screens/cart_screen.dart';
 import 'provider/auth_provider.dart';
+import 'provider/cart_provider.dart';
 import 'models/buku.dart';
 
 void main() {
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()..loadEmail()),
-        // Tambahkan provider lain jika diperlukan, misalnya CartProvider
+        ChangeNotifierProvider(
+            create: (_) => CartProvider()), // Tambahkan CartProvider
       ],
       child: MaterialApp(
         title: 'Uas perpustakaan',
@@ -35,8 +37,7 @@ class MyApp extends StatelessWidget {
           '/buku': (context) => BukuScreen.BukuScreen(),
           '/sewa': (context) => SewaScreen(),
           '/profile': (context) => ProfileScreen(),
-          '/cart': (context) => CartScreen(
-              cart: []), // Inisialisasi cart dengan list kosong atau nilai awal yang sesuai
+          '/cart': (context) => CartScreen(), // Tambahkan rute untuk CartScreen
         },
       ),
     );
@@ -50,7 +51,6 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
-  List<Buku> _cart = []; // Menyimpan buku yang akan disewa
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +62,7 @@ class _MainScreenState extends State<MainScreen> {
           BukuScreen.BukuScreen(),
           SewaScreen(),
           ProfileScreen(),
-          CartScreen(cart: _cart), // Pastikan CartScreen menerima argumen _cart
+          CartScreen(), // CartScreen now accessed directly without argument
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -109,7 +109,7 @@ class _MainScreenState extends State<MainScreen> {
               // Langsung tampilkan halaman CartScreen dengan _cart sebagai argumen
               setState(() {
                 _currentIndex =
-                    4; // Index 4 adalah CartScreen dalam IndexedStack
+                    3; // Index 3 adalah CartScreen dalam IndexedStack
               });
               break;
             case 4:
