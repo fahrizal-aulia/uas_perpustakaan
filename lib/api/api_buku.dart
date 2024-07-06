@@ -4,7 +4,7 @@ import '../models/buku.dart';
 
 class ApiBuku {
   static const baseUrl =
-      'https://utsuwp.000webhostapp.com/api/'; // ganti api buku disini( laravel apibukuController)
+      'http://192.168.1.6:8000/api/'; // ganti api buku disini( laravel apibukuController)
 
   static Future<List<Buku>> fetchBooks() async {
     final response = await http.get(Uri.parse(baseUrl + 'buku'));

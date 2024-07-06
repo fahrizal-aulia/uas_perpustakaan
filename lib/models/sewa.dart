@@ -1,18 +1,24 @@
+// lib/models/sewa.dart
+
 class Sewa {
   final int id;
-  final int id_member;
+  final int?
+      id_member; // Ubah menjadi nullable karena bisa saja pelanggan belum login
   final int id_buku;
-  final String judul_buku;
-  final int harga_buku;
-  final String tgl_kembali;
+  final String?
+      judul_buku; // Ubah menjadi nullable karena bisa saja pelanggan belum login
+  final int?
+      harga_buku; // Ubah menjadi nullable karena bisa saja pelanggan belum login
+  final String?
+      tgl_kembali; // Ubah menjadi nullable karena bisa saja pelanggan belum login
 
   Sewa({
     required this.id,
-    required this.id_member,
+    this.id_member,
     required this.id_buku,
-    required this.judul_buku,
-    required this.harga_buku,
-    required this.tgl_kembali,
+    this.judul_buku,
+    this.harga_buku,
+    this.tgl_kembali,
   });
 
   factory Sewa.fromJson(Map<String, dynamic> json) {

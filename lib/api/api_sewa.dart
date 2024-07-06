@@ -4,7 +4,7 @@ import '../models/sewa.dart';
 
 class ApiSewa {
   static const String apiUrl =
-      'https://utsuwp.000webhostapp.com/api/sewa'; // ganti api sewa (laravel apisewaController)
+      'http://192.168.1.6:8000/api/sewa'; // ganti api sewa (laravel apisewaController)
 
   static Future<List<Sewa>> fetchRentalsByUserId(int userId) async {
     final response = await http.get(Uri.parse('$apiUrl/user/$userId'));
@@ -17,19 +17,18 @@ class ApiSewa {
     }
   }
 
-  static Future<Sewa> createRental(Sewa sewa) async {
+  static Future<void> createRentalFromCart(
+      List<Map<String, dynamic>> sewaItems) async {
     final response = await http.post(
-      Uri.parse(apiUrl),
+      Uri.parse('$apiUrl/cart'),
       headers: {
         'Content-Type': 'application/json',
       },
-      body: jsonEncode(sewa.toJson()),
+      body: jsonEncode({'sewa_items': sewaItems}),
     );
 
-    if (response.statusCode == 201) {
-      return Sewa.fromJson(json.decode(response.body));
-    } else {
-      throw Exception('Failed to create rental');
+    if (response.statusCode != 201) {
+      throw Exception('Failed to create rentals');
     }
   }
 

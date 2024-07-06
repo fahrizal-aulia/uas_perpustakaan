@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/buku.dart';
 import '../api/api_buku.dart';
+import '../screens/cart_screen.dart';
 
 class BukuScreen extends StatefulWidget {
   @override
@@ -8,12 +9,20 @@ class BukuScreen extends StatefulWidget {
 }
 
 class _BukuScreenState extends State<BukuScreen> {
+  List<Buku> _cart = []; // State untuk menyimpan buku yang akan disewa
+
   late Future<List<Buku>> futureBuku;
 
   @override
   void initState() {
     super.initState();
     futureBuku = ApiBuku.fetchBooks();
+  }
+
+  void addToCart(Buku buku) {
+    setState(() {
+      _cart.add(buku);
+    });
   }
 
   @override
@@ -33,7 +42,7 @@ class _BukuScreenState extends State<BukuScreen> {
                     subtitle: Text(
                         'harga: ${snapshot.data![index].harga_buku.toString()}'),
                     onTap: () {
-                      // Implementasi untuk menangani ketika item buku diklik
+                      addToCart(snapshot.data![index]);
                     },
                   );
                 },
@@ -45,6 +54,17 @@ class _BukuScreenState extends State<BukuScreen> {
             return CircularProgressIndicator();
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CartScreen(cart: _cart),
+            ),
+          );
+        },
+        child: Icon(Icons.shopping_cart),
       ),
     );
   }
