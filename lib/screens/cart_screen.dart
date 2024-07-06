@@ -14,9 +14,14 @@ class CartScreen extends StatelessWidget {
     final cart = cartProvider.items;
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
     final isLoggedIn = authProvider.isLoggedIn;
-    final apiUrl =
-        'http://192.168.1.6:8000/api/sewa/storeFromCart'; // Replace with your actual API URL
+    final guestEmail =
+        'guest@example.com'; // Ganti dengan email tamu yang sesuai
 
+    final apiUrl =
+        'http://192.168.1.6:8000/api/sewa/storeFromCart'; // Ganti dengan URL API yang sesuai
+
+    // Function to perform checkout
+    // Function to perform checkout
     // Function to perform checkout
     Future<void> _checkout(BuildContext context, List<Buku> cart,
         {String? idMember, String? email, String? alamat}) async {
@@ -34,7 +39,8 @@ class CartScreen extends StatelessWidget {
         final Map<String, dynamic> body = {
           'sewa_items': sewaItems,
           'id_member': idMember,
-          'email': email,
+          'email':
+              email ?? '', // Make sure to send an empty string if email is null
           'alamat': alamat,
         };
 
@@ -139,8 +145,10 @@ class CartScreen extends StatelessWidget {
               if (isLoggedIn) {
                 final idMember = authProvider.userId.toString();
                 _checkout(context, cart,
-                    idMember: idMember); // Call checkout function with memberId
+                    idMember:
+                        idMember); // Panggil fungsi checkout dengan memberId
               } else {
+                // Jika tidak login, gunakan email tamu
                 _showLoginDialog(context, cartProvider);
               }
             },

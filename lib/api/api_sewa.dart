@@ -39,7 +39,7 @@ class ApiSewa {
       if (idMember != null) {
         body['id_member'] = idMember;
       } else if (email != null && alamat != null) {
-        body['email'] = email;
+        body['guest_email'] = email;
         body['alamat'] = alamat;
       } else {
         throw Exception(
