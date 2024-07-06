@@ -16,19 +16,19 @@ class _LoginFormState extends State<LoginForm> {
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
 
-    // Validasi input email dan password
+    // valid login
     if (email.isEmpty || password.isEmpty) {
       _showErrorDialog('Email dan Password harus diisi.');
       return;
     }
 
     try {
-      // Panggil metode login dari AuthProvider
+      // Panggil metode login AuthProvider
       final authProvider = Provider.of<AuthProvider>(context, listen: false);
       await authProvider.login(email, password);
 
-      // Navigasi ke halaman home atau profile setelah login berhasil
-      Navigator.pushReplacementNamed(context, '/profile');
+      // Navigasi ke halaman main setelah benar semua
+      Navigator.pushReplacementNamed(context, '/main');
     } catch (e) {
       // Tampilkan pesan error jika login gagal
       _showErrorDialog('Login gagal: ${e.toString()}');

@@ -29,9 +29,9 @@ class _BukuScreenState extends State<BukuScreen> {
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(snapshot.data![index].harga_buku.toString()),
-                    subtitle:
-                        Text('Stok: ${snapshot.data![index].stok.toString()}'),
+                    title: Text(snapshot.data![index].judul.toString()),
+                    subtitle: Text(
+                        'harga: ${snapshot.data![index].harga_buku.toString()}'),
                     onTap: () {
                       // Implementasi untuk menangani ketika item buku diklik
                     },

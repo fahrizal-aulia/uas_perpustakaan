@@ -4,11 +4,10 @@ import '../models/buku.dart';
 
 class ApiBuku {
   static const baseUrl =
-      'https://utsuwp.000webhostapp.com/api/'; // Sesuaikan dengan URL API Anda
+      'https://utsuwp.000webhostapp.com/api/'; // ganti api buku disini( laravel apibukuController)
 
   static Future<List<Buku>> fetchBooks() async {
-    final response = await http.get(Uri.parse(baseUrl +
-        'buku')); // Sesuaikan dengan endpoint untuk mengambil data buku
+    final response = await http.get(Uri.parse(baseUrl + 'buku'));
 
     if (response.statusCode == 200) {
       List<dynamic> data = json.decode(response.body);

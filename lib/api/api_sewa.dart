@@ -3,7 +3,8 @@ import 'package:http/http.dart' as http;
 import '../models/sewa.dart';
 
 class ApiSewa {
-  static const String apiUrl = 'https://utsuwp.000webhostapp.com/api/sewa';
+  static const String apiUrl =
+      'https://utsuwp.000webhostapp.com/api/sewa'; // ganti api sewa (laravel apisewaController)
 
   static Future<List<Sewa>> fetchRentalsByUserId(int userId) async {
     final response = await http.get(Uri.parse('$apiUrl/user/$userId'));

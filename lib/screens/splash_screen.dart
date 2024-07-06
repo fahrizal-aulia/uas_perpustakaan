@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'home_screen.dart'; // Sesuaikan dengan halaman home yang sebenarnya
+import 'home_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Delay untuk mengarahkan pengguna ke halaman selanjutnya setelah 3 detik
+    // Delay 3 solashcreeen
     Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-            builder: (context) =>
-                HomeScreen()), // Ganti dengan halaman home yang sesuai
+        MaterialPageRoute(builder: (context) => HomeScreen()),
       );
     });
 
     return Scaffold(
-      backgroundColor: Colors.blue, // Warna pendidikan, misalnya biru
+      backgroundColor: Colors.blue,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -25,7 +23,7 @@ class SplashScreen extends StatelessWidget {
               style: TextStyle(fontSize: 24, color: Colors.white),
             ),
             SizedBox(height: 20),
-            CircularProgressIndicator(), // Indikator loading atau animasi lainnya
+            CircularProgressIndicator(),
           ],
         ),
       ),

@@ -5,7 +5,7 @@ import 'screens/login_screen.dart';
 import 'screens/buku_screen.dart';
 import 'screens/sewa_screen.dart';
 import 'screens/profile_screen.dart';
-import 'provider/auth_provider.dart'; // Sesuaikan dengan path provider Anda
+import 'provider/auth_provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => AuthProvider()..loadEmail(), // Inisialisasi AuthProvider
+      create: (_) => AuthProvider()..loadEmail(),
       child: MaterialApp(
         title: 'Uas perpustakaan',
         theme: ThemeData(
@@ -25,12 +25,12 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) =>
-              SplashScreen(), // Splash screen sebagai halaman awal
-          '/login': (context) => LoginForm(), // Halaman login
-          '/main': (context) => MainScreen(), // Halaman utama setelah login
-          '/buku': (context) => BukuScreen(), // Halaman buku
-          '/sewa': (context) => SewaScreen(), // Halaman sewa
-          '/profile': (context) => ProfileScreen(), // Halaman profile
+              SplashScreen(),
+          '/login': (context) => LoginForm(),
+          '/main': (context) => MainScreen(),
+          '/buku': (context) => BukuScreen(),
+          '/sewa': (context) => SewaScreen(),
+          '/profile': (context) => ProfileScreen(),
         },
       ),
     );
@@ -51,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
       body: IndexedStack(
         index: _currentIndex,
         children: <Widget>[
-          SplashScreen(), // Placeholder untuk SplashScreen, bisa dihapus jika tidak digunakan
+          SplashScreen(),
           BukuScreen(),
           SewaScreen(),
           ProfileScreen(),
