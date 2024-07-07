@@ -21,7 +21,7 @@ class AuthProvider with ChangeNotifier {
   bool get isLoggedIn => _email.isNotEmpty;
 
   Future<void> login(String email, String password) async {
-    String apiUrl = 'http://192.168.1.6:8000/api/login';
+    String apiUrl = 'https://utsuwp.000webhostapp.com/api/login';
     var response = await http.post(Uri.parse(apiUrl), body: {
       'email': email,
       'password': password,
@@ -66,7 +66,7 @@ class AuthProvider with ChangeNotifier {
     _userId = prefs.getInt('user_id');
     _email = prefs.getString('email') ?? '';
     if (_userId != null) {
-      String apiUrl = 'http://192.168.1.6:8000/api/member/$_userId';
+      String apiUrl = 'https://utsuwp.000webhostapp.com/api/member/$_userId';
       var response = await http.get(Uri.parse(apiUrl));
 
       if (response.statusCode == 200) {

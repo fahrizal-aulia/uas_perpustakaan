@@ -4,7 +4,7 @@ import '../models/sewa.dart';
 import '../models/buku.dart';
 
 class ApiSewa {
-  static const String apiUrl = 'http://192.168.1.6:8000/api/sewa';
+  static const String apiUrl = 'https://utsuwp.000webhostapp.com/api/sewa';
 
   // Fetch rentals by user ID
   static Future<List<Sewa>> fetchRentalsByUserId(int userId) async {

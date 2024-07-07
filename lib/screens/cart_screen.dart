@@ -18,7 +18,7 @@ class CartScreen extends StatelessWidget {
         'guest@example.com'; // Ganti dengan email tamu yang sesuai
 
     final apiUrl =
-        'http://192.168.1.6:8000/api/sewa/storeFromCart'; // Ganti dengan URL API yang sesuai
+        'https://utsuwp.000webhostapp.com/api/sewa/storeFromCart'; // Ganti dengan URL API yang sesuai
 
     // Function to perform checkout
     // Function to perform checkout
